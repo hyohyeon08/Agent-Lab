@@ -1,0 +1,26 @@
+id: EXP-XXXX
+
+title: ""
+
+date: YYYY-MM-DD
+
+task:
+  id: ""
+  category: ""
+
+model:
+  provider: ""
+  name: ""
+
+harness:
+  name: ""
+  version: ""
+
+environment:
+  os: ""
+  architecture: ""
+
+limits:
+  max_turns:
+
+repetitions: 1

@@ -97,6 +97,8 @@ Agent Lab은 다음 연구 순환을 반복한다.
 단계별 로드맵은 [연구 계획](docs/research-plan.md)을, 첫 관찰 과제에 관한
 내용은 [픽스처 안내서](benchmarks/fixtures/README.md)를 참고한다.
 
+Task 001의 상세 기준은 [에이전트 관찰 설계](docs/superpowers/specs/2026-08-20-task-001-agent-observation-design.md), 구현 순서는 [구현 계획](docs/superpowers/plans/2026-08-20-task-001-agent-observation.md), 실제 실행 절차는 [실행 안내](docs/runbooks/task-001-run.md)를 참고한다.
+
 ## 현재 상태
 
 **단계: Agent Lab v0 — 첫 관찰**

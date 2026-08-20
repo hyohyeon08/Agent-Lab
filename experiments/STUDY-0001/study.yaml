@@ -7,7 +7,7 @@ task:
   id: TASK-001
 fixture:
   name: booking-scheduler
-  source_commit: required-before-run
+  source_commit: 4e6fe8c38ac4b9ed8c29deb67b314cd6b166ca6e
 condition:
   id: codex-current-config-v0
   agent:

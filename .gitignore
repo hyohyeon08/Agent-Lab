@@ -9,6 +9,7 @@ coverage/
 
 runs/raw/*
 !runs/raw/.gitkeep
+runs/workspaces/*
 
 .DS_Store
 *.log

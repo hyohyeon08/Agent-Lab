@@ -11,8 +11,8 @@ agent:
   skills: unknown
 fixture:
   name: booking-scheduler
-  source_commit: required-before-run
-  workspace_start_commit: required-before-run
+  source_commit: 4e6fe8c38ac4b9ed8c29deb67b314cd6b166ca6e
+  workspace_start_commit: bd932cab3f9a5fae3d5836b4173888bcb46aade3
 task:
   id: TASK-001
 source_task:

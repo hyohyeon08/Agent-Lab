@@ -1,27 +1,25 @@
-# EXP-XXXX
+# STUDY-ID 연구 보고서
 
-## Objective
+## 연구 질문
 
-## Hypothesis
+## 가설 또는 실행 전 예상
 
-## Setup
+## 설정
 
-### Task
+### 과제
 
-### Model
+### 조건
 
-### Harness
+### 환경
 
-### Environment
+## 실행 결과
 
-## Results
+## 관찰
 
-## Observations
+## 해석
 
-## Interpretation
+## 한계
 
-## Limitations
+## 후속 질문
 
-## Follow-up Questions
-
-## Next Experiment
+## 다음 연구

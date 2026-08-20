@@ -1,0 +1,19 @@
+id: STUDY-ID
+title: 연구 제목
+research_question: 연구 질문
+task:
+  id: TASK-ID
+fixture:
+  name: fixture-name
+  source_commit: required-before-run
+condition:
+  id: condition-id
+  agent:
+    label: agent-label
+    model: unknown
+    reasoning_effort: unknown
+    harness: unknown
+    plugins: unknown
+    skills: unknown
+runs:
+  - RUN-ID

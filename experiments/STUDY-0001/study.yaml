@@ -1,0 +1,21 @@
+id: STUDY-0001
+title: 하나의 Codex 에이전트가 작은 예약 경계 버그를 해결하는 과정 관찰
+research_question: >-
+  하나의 고정된 Codex 에이전트는 작은 TypeScript 버그를 어떻게 조사하고
+  수정하며, 그 과정에서 어떤 관찰 가능한 행동을 기록할 가치가 있는가?
+task:
+  id: TASK-001
+fixture:
+  name: booking-scheduler
+  source_commit: required-before-run
+condition:
+  id: codex-current-config-v0
+  agent:
+    label: codex-current-config-v0
+    model: unknown
+    reasoning_effort: unknown
+    harness: Codex desktop
+    plugins: unknown
+    skills: unknown
+runs:
+  - RUN-0001

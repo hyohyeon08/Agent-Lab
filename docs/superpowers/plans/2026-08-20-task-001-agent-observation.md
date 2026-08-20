@@ -274,7 +274,7 @@ test("종료가 시작보다 빠르면 거부한다", () => {
 });
 ```
 
-- [ ] **Step 4: 공개 테스트가 구현 부재로 실패하는지 확인**
+- [ ] **Step 4: 실제 동작 assertion의 RED를 확인**
 
 Run:
 
@@ -282,7 +282,15 @@ Run:
 npm --prefix benchmarks/fixtures/booking-scheduler test
 ```
 
-Expected: FAIL with `Cannot find module '../src/booking-service.js'`.
+Expected: 처음에는 `Cannot find module '../src/booking-service.js'`로 FAIL한다. 이는
+테스트 파일이 먼저 작성되었고 모듈이 없음을 확인하는 진단일 뿐, 충분한 TDD RED는
+아니다. 다음 단계로 `booking.ts`, `time-range.ts`, `booking-repository.ts`,
+`booking-service.ts`에 테스트가 import하는 이름을 export하는 최소 loadable skeleton을
+작성한다. `BookingService.create()`는 예를 들어 `Error("not implemented")`를 던져도
+된다. import 오류가 사라진 뒤 같은 명령을 다시 실행해, 최종 구현 전에 실제 예약
+동작 assertion이 FAIL하는 것을 확인한다. Expected: `Cannot find module` 없이 테스트가
+실행되고 assertion failure로 FAIL한다. 그 뒤 Step 5부터 Step 8의 최종 구현으로
+skeleton을 대체한다.
 
 - [ ] **Step 5: 예약 타입 작성**
 
@@ -675,7 +683,7 @@ if (failures > 0) {
 diff --git a/src/time-range.ts b/src/time-range.ts
 --- a/src/time-range.ts
 +++ b/src/time-range.ts
-@@ -23,8 +23,8 @@ export class TimeRange {
+@@ -23,7 +23,7 @@ export class TimeRange {
    overlaps(other: TimeRange): boolean {
      return (
 -      this.startMinute <= other.endMinute &&
@@ -733,7 +741,7 @@ mkdir "$task_oracle_root"
 git archive HEAD:benchmarks/fixtures/booking-scheduler | tar -x -C "$task_oracle_root"
 git -C "$task_oracle_root" init
 git -C "$task_oracle_root" apply "$task_oracle_patch"
-npm --prefix "$task_oracle_root" ci
+(cd "$task_oracle_root" && npm ci)
 npm run evaluate:task-001 -- --candidate "$task_oracle_root"
 npm --prefix "$task_oracle_root" test
 npm --prefix "$task_oracle_root" run typecheck
@@ -1197,7 +1205,7 @@ git archive "$task_fixture_commit":benchmarks/fixtures/booking-scheduler | tar -
 git -C "$task_run_root" init
 git -C "$task_run_root" add .
 git -C "$task_run_root" -c user.name="Agent Lab" -c user.email="agent-lab@example.invalid" commit -m "baseline: TASK-001 broken state"
-npm --prefix "$task_run_root" ci
+(cd "$task_run_root" && npm ci)
 npm --prefix "$task_run_root" test
 npm --prefix "$task_run_root" run typecheck
 git -C "$task_run_root" rev-parse HEAD
@@ -1310,7 +1318,7 @@ mkdir "$task_oracle_root"
 git archive HEAD:benchmarks/fixtures/booking-scheduler | tar -x -C "$task_oracle_root"
 git -C "$task_oracle_root" init
 git -C "$task_oracle_root" apply "$task_oracle_patch"
-npm --prefix "$task_oracle_root" ci
+(cd "$task_oracle_root" && npm ci)
 npm run evaluate:task-001 -- --candidate "$task_oracle_root"
 npm --prefix "$task_oracle_root" test
 npm --prefix "$task_oracle_root" run typecheck
@@ -1325,12 +1333,16 @@ Run the commands in Runbook section 2, then run:
 
 ```bash
 task_run_root="$PWD/runs/workspaces/STUDY-0001/RUN-0001/booking-scheduler"
-find "$task_run_root" -path "$task_run_root/.git" -prune -o -type f -print | sort
+git -C "$task_run_root" ls-files | sort
 if find "$task_run_root" -path "$task_run_root/.git" -prune -o -type f -print | rg 'evaluator|oracle|superpowers|research-plan'; then exit 1; else echo "execution workspace is isolated"; fi
 git -C "$task_run_root" status --short
 ```
 
-Expected: only fixture source, public tests, package files and fixture README are listed; `execution workspace is isolated`; nested Git status is clean.
+Expected: `git ls-files` prints exactly 10 tracked fixture files; no evaluator, oracle,
+superpowers, or research-plan pattern is found anywhere in the workspace tree;
+`execution workspace is isolated` is printed; and nested Git status is clean. After
+dependency installation, untracked ignored files such as `node_modules` may exist and
+are not part of the tracked-file count.
 
 - [ ] **Step 8: 실제 fixture와 workspace 커밋 식별자를 기록**
 

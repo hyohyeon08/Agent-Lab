@@ -1,170 +1,163 @@
-# Research Plan
+# 연구 계획
 
-## Purpose
+## 목적
 
-Agent Lab exists to develop a practical understanding of how coding agents
-behave. Its primary output is not a leaderboard. Its outputs are better
-questions, testable hypotheses, reusable observation methods, and evidence
-that can eventually guide agent and harness design.
+Agent Lab은 코딩 에이전트가 어떻게 행동하는지 실용적으로 이해하기 위해
+존재한다. 이 프로젝트의 핵심 결과물은 순위표가 아니다. 더 나은 질문,
+검증 가능한 가설, 재사용할 수 있는 관찰 방법, 그리고 장기적으로 에이전트와
+하네스 설계를 안내할 수 있는 근거가 핵심 결과물이다.
 
-The project starts by observing one fixed agent. Only after the observation
-method becomes useful will the lab compare models, harnesses, or inference
-environments.
+프로젝트는 하나의 고정된 에이전트를 관찰하는 것에서 시작한다. 관찰 방법의
+유용성이 확인된 뒤에만 모델, 하네스 또는 추론 환경을 비교한다.
 
-## Guiding Principles
+## 연구 원칙
 
-1. **Observe behavior, not hidden thought.** Record visible actions such as
-   file reads, edits, tool choices, tests, retries, and recovery from failure.
-2. **Finish a research loop before adding infrastructure.** A manual but
-   complete study is more valuable than an unfinished automation platform.
-3. **Change one variable at a time.** Controlled comparisons must keep the
-   task, environment, and all unrelated agent settings fixed.
-4. **Separate observation from interpretation.** A trace records what
-   happened; a journal records what the researcher thinks it means.
-5. **Treat failure as research material.** Failed exploration, incorrect
-   edits, tool errors, context loss, and over-editing are useful observations.
-6. **Automate repeated pain.** Build a runner, event schema, database, or
-   dashboard only when completed studies demonstrate a concrete need.
+1. **숨겨진 생각이 아니라 행동을 관찰한다.** 파일 읽기, 수정, 도구 선택,
+   테스트, 재시도, 실패 복구처럼 밖에서 확인할 수 있는 행동을 기록한다.
+2. **인프라를 추가하기 전에 연구 순환을 완주한다.** 수동으로 진행하더라도
+   끝까지 완료한 연구가 미완성 자동화 플랫폼보다 가치 있다.
+3. **한 번에 하나의 변수만 바꾼다.** 통제 비교에서는 과제, 환경, 에이전트의
+   나머지 설정을 고정해야 한다.
+4. **관찰과 해석을 분리한다.** 추적 기록에는 발생한 일을 기록하고,
+   저널에는 그 일이 무엇을 의미한다고 생각하는지 기록한다.
+5. **실패를 연구 자료로 취급한다.** 잘못된 탐색과 수정, 도구 오류,
+   컨텍스트 손실, 과도한 수정도 유용한 관찰이다.
+6. **반복되는 불편만 자동화한다.** 완료한 연구에서 구체적인 필요가 확인된
+   경우에만 실행기, 이벤트 스키마, 데이터베이스 또는 대시보드를 만든다.
 
-## Research Units
+## 연구 단위
 
-Agent Lab uses the following terms consistently:
+Agent Lab에서는 다음 용어를 일관되게 사용한다.
 
-- A **research question** states what the researcher wants to understand.
-- A **study** investigates one research question.
-- A **condition** defines one controlled agent and task setup.
-- A **run** is one attempt by one agent on one task under one condition.
-- A **trace** records the observable events of a run.
-- An **evaluation** judges the result using tests, type checks, lint, and the
-  resulting diff where applicable.
-- An **analysis** interprets evidence across runs.
-- A **journal** records observations, uncertainty, changes of mind, and the
-  next question.
+- **연구 질문(Research Question)**은 연구자가 이해하고 싶은 내용을 밝힌다.
+- **연구(Study)**는 하나의 연구 질문을 조사한다.
+- **조건(Condition)**은 통제된 하나의 에이전트 및 과제 설정을 정의한다.
+- **실행(Run)**은 하나의 에이전트가 하나의 조건에서 과제를 수행하는
+  한 번의 시도다.
+- **추적 기록(Trace)**은 실행 중 관찰된 이벤트를 기록한다.
+- **평가(Evaluation)**는 테스트, 타입 검사, 린트 및 변경 diff 등을 이용해
+  결과를 판단한다.
+- **분석(Analysis)**은 여러 실행에서 얻은 근거를 해석한다.
+- **저널(Journal)**은 관찰, 불확실성, 생각의 변화와 다음 질문을 기록한다.
 
-These distinctions prevent a single run from being confused with the larger
-study that contains it.
+이 구분을 통해 한 번의 실행과 그 실행을 포함하는 더 큰 연구를 혼동하지
+않도록 한다.
 
-## Phased Roadmap
+## 단계별 로드맵
 
-### Phase 1: Observe One Agent
+### 1단계: 하나의 에이전트 관찰
 
-Keep the agent fixed and watch how it works on small, reproducible bug-fix
-tasks. Review traces manually and develop an initial vocabulary for exploration,
-editing, testing, failure, and recovery behavior.
+에이전트를 고정하고 작고 재현 가능한 버그 수정 과제를 해결하는 과정을
+관찰한다. 추적 기록을 수동으로 검토하면서 탐색, 수정, 테스트, 실패,
+복구 행동을 설명할 수 있는 초기 언어를 만든다.
 
-Deliverables:
+결과물:
 
-- One small TypeScript fixture.
-- One deliberately introduced bug with an objective evaluator.
-- One run using a fixed Codex agent.
-- One manually written observation record.
-- One journal entry describing what was expected, what was observed, and what
-  question emerged.
+- 작은 TypeScript 픽스처 하나
+- 객관적으로 평가할 수 있는 의도적인 버그 하나
+- 고정된 Codex 에이전트를 사용한 실행 한 번
+- 사람이 작성한 관찰 기록 하나
+- 예상, 실제 관찰, 새로 생긴 질문을 담은 저널 하나
 
-### Phase 2: Observe Variation Within One Agent
+### 2단계: 같은 에이전트 내부의 변동 관찰
 
-Repeat a useful task with the same agent and unchanged conditions. Determine
-which behaviors are stable and which vary between runs. Do not interpret a
-single trajectory as the permanent character of an agent.
+유용한 과제를 동일한 에이전트와 동일한 조건으로 반복 실행한다. 어떤 행동이
+일관되고 어떤 행동이 실행마다 달라지는지 확인한다. 하나의 실행 경로를
+에이전트의 고정적인 특성으로 해석하지 않는다.
 
-Deliverables:
+결과물:
 
-- Repeated runs from the same clean starting state.
-- A comparison of trajectories without changing the agent.
-- A first draft of the behavior and failure taxonomy.
+- 동일한 초기 상태에서 수행한 반복 실행
+- 에이전트를 변경하지 않은 실행 경로 비교
+- 행동 및 실패 분류 체계 초안
 
-### Phase 3: Run a Controlled Comparison
+### 3단계: 통제 비교 수행
 
-Change one component only after the fixture, trace, and evaluator have proved
-useful. A first comparison may change the model or introduce one small harness
-behavior, but not both.
+픽스처, 추적 기록, 평가 방법의 유용성이 확인된 뒤에만 구성 요소 하나를
+바꾼다. 첫 비교에서는 모델을 바꾸거나 작은 하네스 행동 하나를 추가할 수
+있지만, 둘을 동시에 바꾸지는 않는다.
 
-Deliverables:
+결과물:
 
-- One explicit hypothesis.
-- Two clearly defined conditions.
-- Multiple repetitions under each condition.
-- An analysis that reports uncertainty and avoids causal claims unsupported by
-  the controls.
+- 명시적인 가설 하나
+- 명확하게 정의된 조건 두 개
+- 각 조건에서 수행한 여러 번의 반복 실행
+- 불확실성을 보고하고, 통제가 뒷받침하지 않는 인과 주장을 피하는 분석
 
-### Phase 4: Isolate Harness Behaviors
+### 4단계: 하네스 행동 분리
 
-Use a controllable minimal harness to test individual mechanisms such as
-planning before editing, context summarization, or failure recovery. Treat
-complete products such as Codex or Claude Code as black-box agents unless their
-model, prompts, tools, and orchestration can actually be controlled.
+통제할 수 있는 최소 하네스를 이용해 수정 전 계획, 컨텍스트 요약, 실패 복구
+같은 개별 메커니즘을 검증한다. 모델, 프롬프트, 도구, 오케스트레이션을 실제로
+통제할 수 없다면 Codex나 Claude Code 같은 완성된 제품은 블랙박스
+에이전트로 취급한다.
 
-Deliverables:
+결과물:
 
-- Small harness variants that differ by one behavior.
-- Ablation studies that explain which behavior changes a trajectory.
-- Behavior metrics promoted from patterns first found through manual review.
+- 하나의 행동만 다르게 만든 작은 하네스 변형
+- 어떤 행동이 실행 경로를 바꾸는지 설명하는 제거 실험
+- 수동 검토에서 먼저 발견된 패턴을 바탕으로 만든 행동 지표
 
-### Phase 5: Apply the Evidence
+### 5단계: 근거를 실제 선택에 적용
 
-Once enough studies exist, use the evidence to choose agents for different
-classes of work. Consider success, latency, token and compute cost, diff quality,
-and human intervention. Routing policy is a later research output, not an
-initial product requirement.
+충분한 연구가 쌓이면 과제 종류에 따라 에이전트를 선택하는 데 그 근거를
+사용한다. 성공 여부, 지연시간, 토큰 및 연산 비용, diff 품질, 사람의 개입을
+함께 고려한다. 라우팅 정책은 나중에 얻을 연구 결과이며, 초기 제품 요구사항이
+아니다.
 
-## First-Month Success Criteria
+## 첫 달 성공 기준
 
-The first month succeeds when the research loop becomes a habit. A reasonable
-target is:
+첫 달의 성공은 연구 순환이 습관이 되는 것이다. 다음을 합리적인 목표로 삼는다.
 
-- Complete at least two small studies.
-- Read and annotate 20 to 30 traces manually.
-- Draft an initial behavior and failure taxonomy.
-- Write a journal entry each week.
-- Turn at least one observation into a testable follow-up hypothesis.
+- 작은 연구를 최소 두 개 완료한다.
+- 추적 기록 20~30개를 직접 읽고 주석을 단다.
+- 초기 행동 및 실패 분류 체계를 작성한다.
+- 매주 저널을 작성한다.
+- 관찰 하나 이상을 검증 가능한 후속 가설로 바꾼다.
 
-These are learning targets rather than statistical guarantees. Early studies
-may be qualitative and small.
+이 목표는 통계적 보장을 위한 것이 아니라 학습을 위한 것이다. 초기 연구는
+정성적이고 작은 규모일 수 있다.
 
-## Current Non-Goals
+## 현재의 비목표
 
-The following work is deliberately deferred:
+다음 작업은 의도적으로 미룬다.
 
-- A public leaderboard.
-- A dashboard or web application.
-- A database or event bus.
-- A general plugin system.
-- Large benchmark imports.
-- Automatic agent routing.
-- Broad model and harness support.
-- Premature metrics for behavior patterns that have not yet been observed.
+- 공개 순위표
+- 대시보드 또는 웹 애플리케이션
+- 데이터베이스 또는 이벤트 버스
+- 범용 플러그인 시스템
+- 대규모 벤치마크 가져오기
+- 자동 에이전트 라우팅
+- 여러 모델과 하네스에 대한 광범위한 지원
+- 실제로 관찰하지 않은 행동 패턴을 위한 성급한 지표
 
-## First Work Sequence
+## 첫 작업 순서
 
-The first milestone is one complete observation loop, not three prebuilt tasks.
-Work proceeds in this order:
+첫 번째 마일스톤은 세 개의 과제를 미리 만드는 것이 아니라 하나의 관찰 순환을
+완주하는 것이다. 다음 순서로 진행한다.
 
-1. Record the initial exploratory question: "How does one fixed Codex agent
-   investigate and repair a small TypeScript bug, and which visible behaviors
-   are useful to observe?"
-2. Define a lightweight manual observation record.
-3. Create a small TypeScript fixture project.
-4. Introduce one small bug and write Task 001 without revealing its solution.
-5. Add an evaluator that distinguishes the clean baseline, the broken starting
-   state, and a correct repair.
-6. Make the broken starting state reproducible and easy to reset.
-7. Record the date, fixture commit, available agent identifiers, environment,
-   and task prompt before the run.
-8. Run one fixed Codex agent on Task 001.
-9. Review the full visible trajectory and write the observation record.
-10. Write a journal entry capturing expectations, surprises, interpretation,
-   limitations, and the next question.
-11. Decide whether the evidence calls for Task 002, a repeated run, or a change
-   to the observation format.
+1. 첫 탐색 질문을 기록한다. "하나의 고정된 Codex 에이전트는 작은
+   TypeScript 버그를 어떻게 조사하고 수정하며, 그 과정에서 어떤 관찰 가능한
+   행동을 기록할 가치가 있는가?"
+2. 가벼운 수동 관찰 기록 양식을 정의한다.
+3. 작은 TypeScript 픽스처 프로젝트를 만든다.
+4. 작은 버그 하나를 넣고 해결 방법을 노출하지 않는 Task 001을 작성한다.
+5. 정상 기준 상태와 고장 난 초기 상태를 구분하고 올바른 수정을 확인할 수
+   있는 평가 절차를 추가한다.
+6. 고장 난 초기 상태를 동일하게 재현하고 쉽게 복원할 수 있게 한다.
+7. 실행 전에 날짜, 픽스처 커밋, 확인할 수 있는 에이전트 식별자, 환경,
+   과제 프롬프트를 기록한다.
+8. 하나의 고정된 Codex 에이전트로 Task 001을 실행한다.
+9. 관찰 가능한 전체 실행 경로를 검토하고 관찰 기록을 작성한다.
+10. 예상, 놀라웠던 점, 해석, 한계, 다음 질문을 담은 저널을 작성한다.
+11. 근거를 바탕으로 Task 002를 만들지, 같은 과제를 반복 실행할지,
+    관찰 양식을 바꿀지 결정한다.
 
-The lab should not build Task 002 until Task 001 has completed this entire
-cycle.
+Task 001이 전체 순환을 완료하기 전에는 Task 002를 만들지 않는다.
 
-## Decision Rule for New Features
+## 새 기능을 추가하는 판단 기준
 
-Before adding infrastructure, ask:
+인프라를 추가하기 전에 다음과 같이 묻는다.
 
-> Which completed observation or study demonstrated that this feature is
-> necessary?
+> 완료한 어떤 관찰 또는 연구를 통해 이 기능이 필요하다는 사실을 확인했는가?
 
-If there is no concrete answer, defer the feature and run the next experiment.
+구체적인 답이 없다면 기능을 미루고 다음 연구를 수행한다.

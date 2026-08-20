@@ -1,81 +1,79 @@
-# Observation Fixtures
+# 관찰용 픽스처
 
-Fixtures are small, reproducible repositories used to observe agent behavior.
-They are research instruments, not collections of trick questions. A fixture
-should be realistic enough to require repository exploration while remaining
-small enough that a human can understand the complete trace.
+픽스처(Fixture)는 에이전트 행동을 관찰하기 위해 사용하는 작고 재현 가능한
+저장소다. 속임수 문제를 모아 둔 곳이 아니라 연구 도구다. 픽스처는 저장소
+탐색이 필요할 만큼 현실적이어야 하지만, 사람이 전체 실행 경로를 이해할 수
+있을 만큼 작아야 한다.
 
-## Fixture Requirements
+## 픽스처 요구사항
 
-Every observation fixture must provide:
+모든 관찰용 픽스처는 다음을 제공해야 한다.
 
-- A small, self-contained codebase.
-- A documented toolchain and deterministic setup command.
-- A clean baseline known to pass its evaluator.
-- A reproducible broken starting state.
-- A task prompt that describes the desired behavior without disclosing the
-  implementation or root cause.
-- An evaluator that fails on the broken state and passes on a valid repair.
-- A reset procedure that restores exactly the same starting state.
-- A place to record fixture assumptions and known limitations.
+- 작고 독립적인 코드베이스
+- 문서화된 도구 체계와 재현 가능한 설치 명령
+- 평가를 통과한다고 확인된 정상 기준 상태
+- 재현할 수 있는 고장 난 초기 상태
+- 구현 방법이나 근본 원인을 노출하지 않고 원하는 동작을 설명하는 과제
+  프롬프트
+- 고장 난 상태에서는 실패하고 올바르게 수정하면 통과하는 평가 절차
+- 정확히 같은 초기 상태로 되돌리는 복원 절차
+- 픽스처의 가정과 알려진 한계를 기록할 공간
 
-The visible tests may help the agent understand expected behavior, but the
-evaluation must also detect superficial or overfitted repairs when practical.
-The fixture should avoid unrelated complexity, flaky dependencies, network
-requirements, and ambiguous product decisions.
+공개 테스트는 에이전트가 기대 동작을 이해하는 데 도움을 줄 수 있다. 다만
+가능하다면 평가 절차는 피상적이거나 테스트에만 맞춘 수정도 탐지해야 한다.
+픽스처에는 관련 없는 복잡성, 불안정한 의존성, 네트워크 요구사항, 모호한
+제품 결정을 넣지 않는다.
 
-## First Fixture
+## 첫 번째 픽스처
 
-The first fixture will be a small TypeScript project containing one deliberately
-introduced bug. Task 001 will be a bug fix because it provides a concrete
-failure, an observable investigation path, and an objective completion signal.
+첫 번째 픽스처는 의도적인 버그 하나를 포함한 작은 TypeScript 프로젝트다.
+Task 001은 구체적인 실패, 관찰 가능한 조사 과정, 객관적인 완료 신호를
+제공할 수 있는 버그 수정 과제로 만든다.
 
-The first fixture should require the agent to inspect more than one relevant
-file, but it should not require framework expertise or a broad architectural
-change. The initial task should be solvable through repository evidence rather
-than outside knowledge.
+에이전트가 관련 파일을 두 개 이상 살펴볼 필요는 있어야 하지만, 특정
+프레임워크 지식이나 광범위한 아키텍처 변경을 요구해서는 안 된다. 외부 지식이
+아니라 저장소 안의 근거를 이용해 해결할 수 있어야 한다.
 
-The first run keeps the following condition fixed:
+첫 실행에서는 다음 조건을 고정한다.
 
-- Agent: the current Codex agent.
-- Model and harness settings: unchanged during the observation.
-- Environment: the same fixture, tools, and broken starting state.
-- Repetitions: one initial run.
-- Review: manual trace inspection and manual journaling.
+- 에이전트: 현재 Codex 에이전트
+- 모델 및 하네스 설정: 관찰 중 변경하지 않음
+- 환경: 동일한 픽스처, 도구, 고장 난 초기 상태
+- 반복 횟수: 첫 실행 한 번
+- 검토 방식: 사람이 추적 기록을 읽고 저널을 작성
 
-Before the run, record the date, fixture commit, exact task prompt, environment,
-and any model or harness identifier exposed by the agent. If an internal detail
-is unavailable, record it as unknown instead of inferring it.
+실행 전에 날짜, 픽스처 커밋, 정확한 과제 프롬프트, 환경, 에이전트가 제공하는
+모델 또는 하네스 식별자를 기록한다. 내부 정보를 확인할 수 없다면 추측하지
+말고 알 수 없음으로 기록한다.
 
-This run does not compare agents and does not support performance ranking. Its
-purpose is to learn what actions are worth recording and what questions the
-trajectory creates.
+이 실행은 에이전트를 비교하지 않으며 성능 순위를 뒷받침하지 않는다. 어떤
+행동을 기록할 가치가 있는지 배우고, 실행 경로에서 다음 질문을 발견하는 것이
+목적이다.
 
-## Initial Observation Record
+## 초기 관찰 기록
 
-The first run should answer these questions without attempting to score every
-behavior numerically:
+첫 실행에서는 모든 행동을 수치화하려 하지 말고 다음 질문에 답한다.
 
-1. What did the agent inspect first, and why might that have been useful?
-2. When did the agent form and test its first working hypothesis?
-3. When did it make the first edit?
-4. When did it first run the evaluator?
-5. Which reads, edits, or tests were repeated?
-6. How did behavior change after a failed command or test?
-7. What evidence did the agent use to declare completion?
-8. Which actions appeared useful, unnecessary, or risky?
-9. What cannot be concluded from this single run?
-10. Which new question should guide the next run or fixture?
+1. 에이전트가 처음 확인한 것은 무엇이며, 그것은 왜 유용했을 수 있는가?
+2. 에이전트가 첫 번째 작업 가설을 세우고 검증한 시점은 언제인가?
+3. 첫 번째 코드 수정은 언제 이루어졌는가?
+4. 평가 절차를 처음 실행한 시점은 언제인가?
+5. 어떤 파일 읽기, 수정 또는 테스트가 반복되었는가?
+6. 명령이나 테스트가 실패한 뒤 행동이 어떻게 달라졌는가?
+7. 에이전트는 어떤 근거로 작업 완료를 판단했는가?
+8. 어떤 행동이 유용하거나 불필요하거나 위험해 보였는가?
+9. 이 한 번의 실행으로는 무엇을 결론 내릴 수 없는가?
+10. 다음 실행이나 픽스처를 이끌 새로운 질문은 무엇인가?
 
-## After Task 001
+## Task 001 이후
 
-Do not automatically create a large suite. Review the first trace and choose
-one evidence-driven next step:
+첫 실행 직후 큰 과제 모음을 자동으로 만들지 않는다. 첫 추적 기록을 검토하고
+근거에 따라 다음 단계 하나를 선택한다.
 
-- Repeat Task 001 to observe within-agent variation.
-- Create Task 002 to observe the same behavior in a different bug.
-- Revise the observation record because important behavior was missed.
-- Refine the evaluator because completion was ambiguous.
+- 같은 에이전트 내부의 변동을 관찰하기 위해 Task 001을 반복한다.
+- 다른 버그에서도 같은 행동이 나타나는지 보기 위해 Task 002를 만든다.
+- 중요한 행동이 빠졌다면 관찰 기록 양식을 수정한다.
+- 완료 여부가 모호했다면 평가 절차를 개선한다.
 
-Automation begins only after this manual process exposes repeated work that is
-both costly and well understood.
+수동 과정에서 비용이 크고 잘 이해된 반복 작업이 발견된 뒤에만 자동화를
+시작한다.

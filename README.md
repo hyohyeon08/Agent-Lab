@@ -1,106 +1,107 @@
 # Agent Lab
 
-Agent Lab is a personal laboratory for learning how AI agents behave. It uses
-small, reproducible coding tasks to observe how an agent explores a repository,
-edits code, uses tools, responds to failure, and decides that its work is done.
+Agent Lab은 AI 에이전트가 어떻게 행동하는지 학습하기 위한 개인 연구실이다.
+작고 재현 가능한 코딩 과제를 사용하여 에이전트가 저장소를 탐색하고,
+코드를 수정하고, 도구를 사용하고, 실패에 대응하고, 작업 완료를 판단하는
+과정을 관찰한다.
 
-Agent Lab does not ask only, "Which agent is best?" It asks:
+Agent Lab은 단순히 "어떤 에이전트가 가장 좋은가?"만 묻지 않는다.
+대신 다음과 같이 묻는다.
 
-> Under which conditions does an agent perform better, what does that
-> performance cost, and which part of the agent explains the difference?
+> 어떤 조건에서 에이전트가 더 잘하는가? 그 성능에는 어떤 비용이 들며,
+> 에이전트의 어떤 구성 요소가 그 차이를 만드는가?
 
-The immediate goal is not to build a general benchmark platform. The first
-goal is to develop the habit and vocabulary needed to observe one agent well.
+당장의 목표는 범용 벤치마크 플랫폼을 만드는 것이 아니다. 첫 번째 목표는
+하나의 에이전트를 제대로 관찰하는 습관과 언어를 만드는 것이다.
 
-The project uses the following concepts:
+프로젝트는 다음 개념을 사용한다.
 
 ```text
 Agent = Model + Harness + Environment
 ```
 
-A model supplies capabilities, a harness shapes how those capabilities are
-used, and an environment provides the repository, filesystem, shell, and other
-tools. During a run, an observer records the agent's visible behavior and an
-evaluator checks the resulting work.
+모델(Model)은 능력을 제공하고, 하네스(Harness)는 그 능력이 사용되는 방식을
+구성하며, 환경(Environment)은 저장소, 파일시스템, 셸 및 기타 도구를 제공한다.
+하나의 실행(Run) 동안 관찰자(Observer)는 에이전트의 관찰 가능한 행동을
+기록하고, 평가자(Evaluator)는 작업 결과를 확인한다.
 
-## Research Loop
+## 연구 순환
 
-Agent Lab is used as a repeating research loop:
+Agent Lab은 다음 연구 순환을 반복한다.
 
 ```text
-Observation
-    ↓
-Question
-    ↓
-Hypothesis
-    ↓
-Study
-    ↓
-Interpretation
-    ↓
-Next Question
+관찰
+  ↓
+질문
+  ↓
+가설
+  ↓
+연구
+  ↓
+해석
+  ↓
+다음 질문
 ```
 
-The main units are:
+주요 연구 단위는 다음과 같다.
 
-- **Study**: The complete investigation of one research question.
-- **Condition**: One controlled setup within a study.
-- **Run**: One agent attempting one task under one condition.
-- **Trace**: The observable actions and events produced during a run.
-- **Evaluation**: The evidence used to judge the resulting work.
-- **Journal**: The researcher's observations, interpretation, and changes of
-  mind.
+- **연구(Study)**: 하나의 연구 질문을 조사하는 전체 과정이다.
+- **조건(Condition)**: 연구 안에서 통제된 하나의 설정이다.
+- **실행(Run)**: 하나의 에이전트가 하나의 조건에서 하나의 과제를 수행하는
+  한 번의 시도다.
+- **추적 기록(Trace)**: 실행 중 발생한 관찰 가능한 행동과 이벤트다.
+- **평가(Evaluation)**: 작업 결과를 판단하는 데 사용하는 근거다.
+- **저널(Journal)**: 연구자의 관찰, 해석, 생각의 변화를 기록한 문서다.
 
-The project begins with qualitative observation. Comparison and automation are
-introduced only after real runs show why they are needed.
+프로젝트는 정성적인 관찰에서 시작한다. 비교와 자동화는 실제 실행을 통해
+필요성이 확인된 뒤에 도입한다.
 
-## Research Questions
+## 연구 질문
 
-1. How much does a harness improve model performance?
-2. Does harness utility decrease as models become stronger?
-3. How much additional token usage and latency does each harness introduce?
-4. How do different models behave under the same harness?
-5. How do different harnesses change the behavior of the same model?
-6. Can a smaller model with a strong harness outperform a larger model with a minimal harness?
-7. Which Agent behaviors correlate with successful task completion?
+1. 하네스는 모델의 성능을 얼마나 향상하는가?
+2. 모델이 강해질수록 하네스의 효용은 감소하는가?
+3. 각 하네스는 토큰 사용량과 지연시간을 얼마나 추가하는가?
+4. 같은 하네스에서 서로 다른 모델은 어떻게 행동하는가?
+5. 같은 모델에서 서로 다른 하네스는 행동을 어떻게 바꾸는가?
+6. 강한 하네스를 사용한 작은 모델이 최소 하네스를 사용한 큰 모델보다
+   뛰어날 수 있는가?
+7. 어떤 에이전트 행동이 과제 성공과 관련되어 있는가?
 
-## Repository Structure
+## 저장소 구조
 
-- `src/models`: Model provider communication adapters.
-- `src/harnesses`: Agent harness implementations and adapters.
-- `src/observers`: Execution events and traces.
-- `src/evaluators`: Result evaluation such as tests, lint, and diffs.
-- `src/runners`: Model × Harness × Task experiment execution.
-- `src/core`: Shared domain types and interfaces when they are actually needed.
-- `benchmarks`: Task definitions and benchmark fixtures.
-- `configs`: Model and harness execution settings.
-- `experiments`: Reproducible study records and templates.
-- `journals`: Human-written research and practice journals.
-- `docs/architecture`: Architecture documentation.
-- `docs/decisions`: Architecture Decision Records.
-- `results`: Processed experiment results.
-- `runs/raw`: Unprocessed traces and command output; ignored by Git.
+- `src/models`: 모델 제공자와 통신하는 어댑터
+- `src/harnesses`: 에이전트 하네스 구현 및 어댑터
+- `src/observers`: 실행 이벤트와 추적 기록
+- `src/evaluators`: 테스트, 린트, diff 등을 이용한 결과 평가
+- `src/runners`: Model × Harness × Task 조합 실행
+- `src/core`: 실제로 필요해졌을 때 추가하는 공통 도메인 타입과 인터페이스
+- `benchmarks`: 과제 정의와 벤치마크 픽스처
+- `configs`: 모델 및 하네스 실행 설정
+- `experiments`: 재현 가능한 연구 기록과 템플릿
+- `journals`: 사람이 작성한 연구 및 실습 일지
+- `docs/architecture`: 아키텍처 문서
+- `docs/decisions`: 아키텍처 결정 기록(ADR)
+- `results`: 가공된 연구 결과
+- `runs/raw`: 가공하지 않은 추적 기록과 명령 출력. Git에서 제외된다.
 
-## Controlled Comparison Philosophy
+## 통제 비교 원칙
 
-Change one variable at a time whenever possible.
+가능하면 한 번에 하나의 변수만 바꾼다.
 
-- **Model Comparison**: Keep the harness and task fixed; change only the model.
-- **Harness Comparison**: Keep the model and task fixed; change only the harness.
+- **모델 비교**: 하네스와 과제를 고정하고 모델만 바꾼다.
+- **하네스 비교**: 모델과 과제를 고정하고 하네스만 바꾼다.
 
-Study records and journals serve different purposes: study records capture
-reproducible setups and results, while journals capture human observations,
-questions, hypotheses, and lessons learned.
+연구 기록과 저널은 목적이 다르다. 연구 기록에는 재현 가능한 설정과 결과를
+남기고, 저널에는 사람의 관찰, 질문, 가설, 배운 점을 남긴다.
 
-See [the research plan](docs/research-plan.md) for the phased roadmap and
-[the fixture guide](benchmarks/fixtures/README.md) for the first observation
-task.
+단계별 로드맵은 [연구 계획](docs/research-plan.md)을, 첫 관찰 과제에 관한
+내용은 [픽스처 안내서](benchmarks/fixtures/README.md)를 참고한다.
 
-## Current Status
+## 현재 상태
 
-**Stage: Agent Lab v0 — First Observation**
+**단계: Agent Lab v0 — 첫 관찰**
 
-The repository currently contains structure and documentation only. The next
-milestone is a small TypeScript fixture with one deliberately introduced bug,
-followed by one manually reviewed run using a fixed Codex agent. No model or
-harness comparison is planned until this observation loop has been completed.
+현재 저장소에는 구조와 문서만 존재한다. 다음 마일스톤은 의도적으로 작은
+버그를 넣은 TypeScript 픽스처를 만들고, 고정된 Codex 에이전트로 한 번
+실행한 뒤 그 과정을 수동으로 검토하는 것이다. 이 관찰 순환을 완료하기
+전에는 모델이나 하네스를 비교하지 않는다.

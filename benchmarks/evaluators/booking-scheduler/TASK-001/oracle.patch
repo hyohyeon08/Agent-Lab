@@ -1,0 +1,13 @@
+diff --git a/src/time-range.ts b/src/time-range.ts
+--- a/src/time-range.ts
++++ b/src/time-range.ts
+@@ -23,7 +23,7 @@ export class TimeRange {
+   overlaps(other: TimeRange): boolean {
+     return (
+-      this.startMinute <= other.endMinute &&
+-      other.startMinute <= this.endMinute
++      this.startMinute < other.endMinute &&
++      other.startMinute < this.endMinute
+     );
+   }
+ }

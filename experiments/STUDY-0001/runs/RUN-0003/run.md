@@ -27,8 +27,8 @@ fixture:
 task:
   id: TASK-001
 source_task:
-  id: required-after-task-creation
-  url: required-after-task-creation
+  id: 01a0231e-9a98-7f53-ac8a-975d698de9ca
+  url: unavailable-local-task
 human_interventions: 0
 contaminated: false
 ---
@@ -104,4 +104,3 @@ Agent가 패키지 스크립트와 기존 테스트를 확인하고 현재 테�
 ## 다음 질문
 
 다섯 실행의 사실 기록을 비교한 뒤 정한다.
-

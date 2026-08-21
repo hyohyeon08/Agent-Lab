@@ -5,6 +5,7 @@ external_evaluation: not_run
 regression_test:
   added: unknown
   quality: not_reviewed
+  defect_detection_check: not_run
 diff:
   files_changed: unknown
   lines_added: unknown

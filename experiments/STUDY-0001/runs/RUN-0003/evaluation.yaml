@@ -6,7 +6,7 @@ regression_test:
   added: true
   quality: acceptable
   reproduces_report: true
-  red_check: pass
+  defect_detection_check: pass
   directions: reported_only
   notes: >-
     사용자가 제보한 기존 종료와 새 시작이 같은 방향을 서비스 수준에서 검증한다. 고장 난 baseline 구현에 이 테스트만 적용하면 해당 테스트 1개가 실패한다. 반대 방향은 외부 평가를 통과했다.
@@ -23,10 +23,9 @@ diff:
 manual_review:
   actual_overlap_prevention_preserved: true
   both_adjacent_directions_pass_external_evaluation: true
-  regression_test_written_before_fix: not_observed
 evaluation_environment:
   external_evaluator: pass_with_escalation
-  red_check_attempts:
+  defect_detection_check_attempts:
     - status: harness_error
       reason: git diff output option was placed after the path separator
     - status: harness_error
@@ -37,4 +36,3 @@ human_intervention:
   details: []
 contaminated: false
 final_result: pass
-

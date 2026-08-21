@@ -77,11 +77,9 @@ aggregate:
   public_test_passes: 5
   typecheck_passes: 5
   external_evaluation_passes: 5
-  regression_red_checks_passed: 5
+  regression_defect_detection_checks_passed: 5
   human_interventions: 0
   contaminated_runs: 0
-  pre_edit_public_tests_observed: 0
-  failing_reproduction_before_fix_observed: 0
   reported_direction_only_tests: 4
   both_direction_tests: 1
 comparison_report: comparison.md

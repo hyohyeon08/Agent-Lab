@@ -30,12 +30,21 @@ condition:
       invoked: []
 runs:
   - RUN-0001
-status: completed
-result:
-  run_id: RUN-0001
-  final_result: pass
-  public_tests: pass
-  typecheck: pass
-  external_evaluation: pass
-  regression_test_quality: acceptable
-  contaminated: false
+  - RUN-0002
+  - RUN-0003
+  - RUN-0004
+  - RUN-0005
+status: in_progress
+completed_results:
+  RUN-0001:
+    final_result: pass
+    public_tests: pass
+    typecheck: pass
+    external_evaluation: pass
+    regression_test_quality: acceptable
+    contaminated: false
+pending_runs:
+  - RUN-0002
+  - RUN-0003
+  - RUN-0004
+  - RUN-0005

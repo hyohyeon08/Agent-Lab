@@ -1,0 +1,21 @@
+status: not_run
+public_tests: not_run
+typecheck: not_run
+external_evaluation: not_run
+regression_test:
+  added: unknown
+  quality: not_reviewed
+  reproduces_report: unknown
+  red_check: not_run
+diff:
+  review: not_reviewed
+manual_review:
+  actual_overlap_prevention_preserved: unknown
+  both_adjacent_directions_pass_external_evaluation: unknown
+  regression_test_written_before_fix: not_observed
+human_intervention:
+  count: 0
+  details: []
+contaminated: false
+final_result: not_run
+

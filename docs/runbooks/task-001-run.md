@@ -51,6 +51,12 @@ git -C "$task_run_root" diff --stat "$task_start_commit"
 
 `git add -N .`은 새 파일의 내용도 diff에 포함하기 위한 intent-to-add 표시이며 작업 파일을 수정하지 않는다. Agent의 최종 응답은 `final-response.md`에 그대로 저장한다.
 
+세션 JSONL을 고정한 뒤 [실행 정량 지표 정의](../metrics.md)에 따라
+`time_to_first_action_ms`, 모델 요청 프록시, 논리/상위 도구 호출 수와 분류,
+Skill 노출·실사용, 실패·재시도, 종료 이유를 계산해 `run.md` frontmatter와
+정량 지표 표에 기록한다. 내부 요청 수나 실제 청구액처럼 Trace가 직접
+제공하지 않는 값은 반드시 프록시 또는 unavailable로 표시한다.
+
 ## 5. 독립 평가
 
 ```bash

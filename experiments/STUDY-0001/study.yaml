@@ -82,4 +82,49 @@ aggregate:
   contaminated_runs: 0
   reported_direction_only_tests: 4
   both_direction_tests: 1
+  metrics:
+    schema_version: 1
+    time_to_first_action_ms:
+      min: 5701
+      max: 8764
+      mean: 7806
+    model_request_count:
+      source: token_count_event_proxy
+      total: 35
+      mean: 7.0
+    tool_calls:
+      logical_total: 42
+      logical_mean: 8.4
+      trace_envelope_total: 30
+      trace_envelope_mean: 6.0
+      breakdown_total:
+        plan: 12
+        search: 5
+        read: 5
+        edit: 5
+        test: 8
+        shell: 6
+        wait: 1
+        other: 0
+    skills:
+      visible_per_run: 6
+      invoked_total: 0
+    tests:
+      agent_cases: 36
+      agent_passed: 36
+      external_cases: 45
+      external_passed: 45
+    failed_tool_calls: 0
+    retries: 0
+    cost:
+      actual_usd: unavailable
+      estimated_api_list_price_usd_total: 0.03922808
+      estimated_api_list_price_usd_mean: 0.00784562
+      estimate_method: gpt-5.6-luna_api_list_price
+      pricing_as_of: 2026-08-21
+    termination_reasons:
+      normal_completion: 5
+      timeout: 0
+      error: 0
+      human_stop: 0
 comparison_report: comparison.md

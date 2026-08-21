@@ -30,8 +30,51 @@ source_task:
   id: 01a0231e-99b7-7ba0-82bf-82cf1297210b
   url: unavailable-local-task
 execution:
+  metrics_schema_version: 1
   duration_ms: 48333
   time_to_first_token_ms: 3050
+  time_to_first_action_ms: 5701
+  time_to_first_action_source: trace_timestamp
+  model_request_count: 9
+  model_request_count_source: token_count_event_proxy
+  tool_call_trace_envelope_count: 8
+  tool_call_count: 9
+  tool_call_breakdown:
+    plan: 2
+    search: 1
+    read: 1
+    edit: 1
+    test: 1
+    shell: 2
+    wait: 1
+    other: 0
+  skills:
+    visible_count: 6
+    invoked_count: 0
+  task_success: true
+  task_success_source: independent_evaluation
+  tests:
+    cases: 7
+    passed: 7
+    failed: 0
+    status: pass
+    typecheck: pass
+    external_cases: 9
+    external_passed: 9
+    external_status: pass
+  change:
+    files_changed: 2
+    lines_added: 21
+    lines_deleted: 2
+  failed_tool_calls: 0
+  retries: 0
+  cost:
+    actual_usd: unavailable
+    estimated_api_list_price_usd: 0.01118960
+    estimate_method: gpt-5.6-luna_api_list_price
+    pricing_as_of: 2026-08-21
+  termination_reason: normal_completion
+
   token_usage:
     input_tokens: 155110
     cached_input_tokens: 122880
@@ -94,6 +137,25 @@ Agent가 패키지 스크립트와 기존 테스트를 확인하고 현재 테�
 | - | - | 실행 중 사람 개입 없음 | 관찰 대상 Agent에게 초기 고정 프롬프트 외 메시지나 구현 힌트를 전달하지 않았다. | 아니요 |
 
 # 실행 결과
+
+## 정량 지표
+
+계산 규칙과 한계는 [실행 정량 지표 정의](../../../../docs/metrics.md)를 따른다.
+
+| 지표 | 값 | 측정 근거 |
+|---|---:|---|
+| 첫 tool call | 5701ms | `task_started`부터 첫 `custom_tool_call`까지 |
+| 모델 요청 | 9회 | `token_count` 이벤트 기반 프록시 |
+| 도구 호출 | 논리 호출 9회 / 상위 봉투 8회 | `tools.*` 호출과 `custom_tool_call` |
+| 도구 분류 | plan 2 / search 1 / read 1 / edit 1 / test 1 / shell 2 / wait 1 | 논리 호출의 주된 목적 |
+| Skill | 노출 6 / 실사용 0 | 세션 `world_state`와 Trace |
+| 작업 성공 | pass | 독립 평가 `final_result` |
+| 테스트 | Agent 7/7, 외부 9/9, 타입 검사 pass | 실행 출력과 독립 평가 |
+| 변경 범위 | 2파일, +21/-2 | 시작 커밋 대비 diff |
+| 실패·재시도 | failed tool call 0 / retry 0 | 관찰 대상 Trace |
+| 비용 | 실제 금액 unavailable / API 정가 추정 $0.01118960 | 2026-08-21 Luna 단가 |
+| 종료 이유 | `normal_completion` | `task_complete` 이벤트 |
+
 
 ## Agent가 보고한 검증
 

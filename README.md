@@ -95,15 +95,17 @@ Agent Lab은 다음 연구 순환을 반복한다.
 남기고, 저널에는 사람의 관찰, 질문, 가설, 배운 점을 남긴다.
 
 단계별 로드맵은 [연구 계획](docs/research-plan.md)을, 첫 관찰 과제에 관한
-내용은 [픽스처 안내서](benchmarks/fixtures/README.md)를 참고한다.
+내용은 [픽스처 안내서](benchmarks/fixtures/README.md)를 참고한다. 실행 시간,
+모델 요청 프록시, 도구 호출, Skill, 비용 등 정량 값의 계산 규칙은
+[실행 정량 지표 정의](docs/metrics.md)에 있다.
 
 Task 001의 상세 기준은 [에이전트 관찰 설계](docs/superpowers/specs/2026-08-20-task-001-agent-observation-design.md), 구현 순서는 [구현 계획](docs/superpowers/plans/2026-08-20-task-001-agent-observation.md), 실제 실행 절차는 [실행 안내](docs/runbooks/task-001-run.md)를 참고한다.
 
 ## 현재 상태
 
-**단계: Agent Lab v0 — 첫 관찰**
+**단계: Agent Lab v0 — 첫 5회 반복 관찰 완료**
 
 현재 저장소에는 의도적인 결함이 있는 TypeScript 픽스처, 외부 evaluator와
-oracle, Study/Run 기록, 독립 실행 workspace, 실행 안내가 준비되어 있다. 다음
-마일스톤은 별도 Codex 작업에서 `RUN-0001`을 실행하고 그 결과를 평가·검토하는
-것이다. 이 첫 관찰 순환을 완료하기 전에는 모델이나 하네스를 비교하지 않는다.
+oracle, `RUN-0001`~`RUN-0005` 기록, 독립 평가와 5회 비교 보고서가 있다. 다음
+마일스톤은 같은 모델 조건을 유지한 두 번째 작은 fixture를 추가해 작업 유형에
+따른 탐색·수정·검증 행동의 변화를 관찰하는 것이다.

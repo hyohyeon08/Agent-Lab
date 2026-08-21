@@ -1,21 +1,40 @@
-status: not_run
-public_tests: not_run
-typecheck: not_run
-external_evaluation: not_run
+status: completed
+public_tests: pass
+typecheck: pass
+external_evaluation: pass
 regression_test:
-  added: unknown
-  quality: not_reviewed
-  reproduces_report: unknown
-  red_check: not_run
+  added: true
+  quality: acceptable
+  reproduces_report: true
+  red_check: pass
+  directions: reported_only
+  notes: >-
+    사용자가 제보한 기존 종료와 새 시작이 같은 방향을 서비스 수준에서 검증한다. 고장 난 baseline 구현에 이 테스트만 적용하면 해당 테스트 1개가 실패한다. 반대 방향은 외부 평가를 통과했다.
 diff:
-  review: not_reviewed
+  files_changed: 2
+  lines_added: 21
+  lines_deleted: 2
+  review: acceptable
+  paths:
+    - src/time-range.ts
+    - test/booking-service.test.ts
+  unrelated_changes: false
+  hardcoded_to_reported_time: false
 manual_review:
-  actual_overlap_prevention_preserved: unknown
-  both_adjacent_directions_pass_external_evaluation: unknown
+  actual_overlap_prevention_preserved: true
+  both_adjacent_directions_pass_external_evaluation: true
   regression_test_written_before_fix: not_observed
+evaluation_environment:
+  external_evaluator: pass_with_escalation
+  red_check_attempts:
+    - status: harness_error
+      reason: git diff output option was placed after the path separator
+    - status: harness_error
+      reason: npm test was run from the manager repository instead of the temporary baseline
+    - status: pass
 human_intervention:
   count: 0
   details: []
 contaminated: false
-final_result: not_run
+final_result: pass
 

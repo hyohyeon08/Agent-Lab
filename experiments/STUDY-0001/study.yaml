@@ -34,7 +34,7 @@ runs:
   - RUN-0003
   - RUN-0004
   - RUN-0005
-status: in_progress
+status: completed
 completed_results:
   RUN-0001:
     final_result: pass
@@ -43,8 +43,45 @@ completed_results:
     external_evaluation: pass
     regression_test_quality: acceptable
     contaminated: false
-pending_runs:
-  - RUN-0002
-  - RUN-0003
-  - RUN-0004
-  - RUN-0005
+  RUN-0002:
+    final_result: pass
+    public_tests: pass
+    typecheck: pass
+    external_evaluation: pass
+    regression_test_quality: acceptable
+    contaminated: false
+  RUN-0003:
+    final_result: pass
+    public_tests: pass
+    typecheck: pass
+    external_evaluation: pass
+    regression_test_quality: acceptable
+    contaminated: false
+  RUN-0004:
+    final_result: pass
+    public_tests: pass
+    typecheck: pass
+    external_evaluation: pass
+    regression_test_quality: acceptable
+    contaminated: false
+  RUN-0005:
+    final_result: pass
+    public_tests: pass
+    typecheck: pass
+    external_evaluation: pass
+    regression_test_quality: acceptable
+    contaminated: false
+aggregate:
+  runs_completed: 5
+  final_passes: 5
+  public_test_passes: 5
+  typecheck_passes: 5
+  external_evaluation_passes: 5
+  regression_red_checks_passed: 5
+  human_interventions: 0
+  contaminated_runs: 0
+  pre_edit_public_tests_observed: 0
+  failing_reproduction_before_fix_observed: 0
+  reported_direction_only_tests: 4
+  both_direction_tests: 1
+comparison_report: comparison.md

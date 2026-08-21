@@ -1,0 +1,45 @@
+diff --git a/src/time-range.ts b/src/time-range.ts
+index e721f50..4c0e6d4 100644
+--- a/src/time-range.ts
++++ b/src/time-range.ts
+@@ -22,8 +22,8 @@ export class TimeRange {
+ 
+   overlaps(other: TimeRange): boolean {
+     return (
+-      this.startMinute <= other.endMinute &&
+-      other.startMinute <= this.endMinute
++      this.startMinute < other.endMinute &&
++      other.startMinute < this.endMinute
+     );
+   }
+ }
+diff --git a/test/booking-service.test.ts b/test/booking-service.test.ts
+index 595ff25..e2c3e95 100644
+--- a/test/booking-service.test.ts
++++ b/test/booking-service.test.ts
+@@ -70,6 +70,25 @@ test("같은 회의실에서 충분한 간격이 있는 예약을 허용한다",
+   );
+ });
+ 
++test("기존 예약의 종료 시각에 시작하는 예약을 허용한다", () => {
++  const service = createService();
++  service.create({
++    id: "booking-1",
++    roomId: "room-a",
++    startMinute: 540,
++    endMinute: 600,
++  });
++
++  assert.doesNotThrow(() =>
++    service.create({
++      id: "booking-2",
++      roomId: "room-a",
++      startMinute: 600,
++      endMinute: 660,
++    }),
++  );
++});
++
+ test("다른 회의실에서 같은 시간의 예약을 허용한다", () => {
+   const service = createService();
+   service.create({

@@ -1,14 +1,25 @@
 ---
 study_id: STUDY-0001
 run_id: RUN-0001
-date: 2026-08-20
+date: 2026-08-21
 agent:
-  label: codex-current-config-v0
-  model: unknown
-  reasoning_effort: unknown
-  harness: Codex desktop
-  plugins: unknown
-  skills: unknown
+  label: codex-gpt-5.6-luna-high-no-plugins-v1
+  model: gpt-5.6-luna
+  reasoning_effort: high
+  harness: Codex Desktop originator / Codex CLI exec source
+  plugins:
+    feature: disabled
+    model_visible: []
+    superpowers: disabled
+  skills:
+    model_visible:
+      - imagegen
+      - openai-docs
+      - plugin-creator
+      - skill-creator
+      - skill-installer
+      - developing-with-yjs
+    invoked: []
 fixture:
   name: booking-scheduler
   source_commit: 4e6fe8c38ac4b9ed8c29deb67b314cd6b166ca6e
@@ -16,8 +27,8 @@ fixture:
 task:
   id: TASK-001
 source_task:
-  id: required-after-task-creation
-  url: required-after-task-creation
+  id: 01a022fc-e013-7c42-89b2-7497e88992d3
+  url: unavailable-local-task
 human_interventions: 0
 contaminated: false
 ---

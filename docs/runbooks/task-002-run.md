@@ -73,6 +73,18 @@ Trace가 직접 제공하지 않는 값은 추정하지 않는다. 특히 순수
 provider telemetry가 없다면 `unavailable`로 두고, Trace 경계로 계산한
 `model_response_phase_duration_ms_total`과 구분한다.
 
+RUN-0001에서 검증한 표준 Trace 구조는 다음 명령으로 추출할 수 있다.
+
+```bash
+npm run extract:trace-metrics -- \
+  --trace /absolute/path/to/rollout.jsonl \
+  --run-id RUN-0001 \
+  --output experiments/STUDY-0002/runs/RUN-0001/trace-metrics.yaml
+```
+
+추출기가 예상하지 않은 구조를 보고하면 결과 파일을 강제로 만들지 말고 원본
+JSONL을 수동 검토한다.
+
 ## 5. 첫 dry run 지표 대조
 
 RUN-0001에서는 자동 또는 수동 추출값을 원본 JSONL과 대조한다.

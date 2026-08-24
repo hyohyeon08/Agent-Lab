@@ -233,6 +233,21 @@ estimated_api_list_price_usd =
 v2 실행은 각 run 디렉터리에 `trace-metrics.yaml`을 둔다. `run.md`에는 요약값을,
 이 파일에는 호출별 `model_requests`, 시간 경계와 계산 검증 결과를 기록한다.
 
+Codex 세션 JSONL의 일반적인 `모델 응답 → Tool → Tool output` 구조는 다음 명령으로
+추출한다.
+
+```bash
+npm run extract:trace-metrics -- \
+  --trace /absolute/path/to/rollout.jsonl \
+  --run-id RUN-XXXX \
+  --output experiments/STUDY-ID/runs/RUN-XXXX/trace-metrics.yaml
+```
+
+추출기는 RUN-0001의 수동 계산 15개 핵심 필드와 일치함을 확인했다. 모델 응답
+프록시 수가 Tool 봉투 수보다 정확히 1개 많지 않은 등 예상하지 않은 Trace 구조는
+임의로 맞추지 않고 오류로 중단한다. 이 경우 원본을 수동 검토해 가용한 값과
+`unavailable`을 구분한다.
+
 실행을 고정하기 전에 다음을 확인한다.
 
 1. `model_requests` 길이와 모델 요청 프록시 수가 같다.

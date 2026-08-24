@@ -4,6 +4,11 @@ source:
   task_id: required-after-task-creation
   event: token_count.last_token_usage
   interpretation: observable_model_response_proxy
+boundaries:
+  task_started_at: unknown
+  first_tool_call_at: unknown
+  first_edit_started_at: unknown
+  final_agent_message_completed_at: unknown
 model_requests:
   - sequence: unknown
     preceded_by:
@@ -19,6 +24,20 @@ model_requests:
       reasoning_output_tokens: unknown
       total_tokens: unknown
     response_phase_duration_ms: unknown
+tool_envelopes:
+  - sequence: unknown
+    call_id: unknown
+    category: unknown
+    started_at: unknown
+    completed_at: unknown
+    duration_ms: unknown
+    logical_call_count: unknown
+    result: unknown
+first_pass_evidence:
+  first_edit_started_at: unknown
+  first_post_edit_test: unknown
+  first_post_edit_test_exit_code: unknown
+  first_pass_success: unknown
 summary:
   model_request_count: unknown
   input_tokens: unknown

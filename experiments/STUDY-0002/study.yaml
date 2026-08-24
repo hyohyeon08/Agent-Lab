@@ -24,16 +24,22 @@ condition:
       model_visible: []
       superpowers: disabled
     skills:
-      model_visible: required-at-run
-      invoked: required-after-run
+      model_visible:
+        - imagegen
+        - openai-docs
+        - plugin-creator
+        - skill-creator
+        - skill-installer
+        - developing-with-yjs
+      invoked: []
 runs:
   - RUN-0001
 target_runs: 5
-status: prepared
+status: in_progress
 metrics:
   schema_version: 2
   detail_file: trace-metrics.yaml
-  first_run_manual_trace_validation: required
+  first_run_manual_trace_validation: completed
 baseline:
   public_tests:
     cases: 6
@@ -46,3 +52,11 @@ baseline:
     expected_failed: 1
     expected_status: fail
 predecessor: STUDY-0001
+completed_results:
+  RUN-0001:
+    final_result: pass
+    public_tests: pass
+    typecheck: pass
+    external_evaluation: pass
+    regression_test_quality: acceptable
+    contaminated: false

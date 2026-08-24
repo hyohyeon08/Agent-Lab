@@ -1,18 +1,37 @@
-status: not_run
-public_tests: not_run
-typecheck: not_run
-external_evaluation: not_run
+status: completed
+public_tests:
+  cases: 7
+  passed: 7
+  failed: 0
+  status: pass
+typecheck: pass
+external_evaluation:
+  cases: 9
+  passed: 9
+  failed: 0
+  status: pass
 regression_test:
-  added: unknown
-  quality: not_reviewed
-  defect_detection_check: not_run
+  added: true
+  quality: acceptable
+  defect_detection_check: pass
+  baseline_with_test_only:
+    cases: 7
+    passed: 6
+    failed: 1
+    expected_failure: repeated_cancel_releases_inventory_twice
 diff:
-  files_changed: unknown
-  lines_added: unknown
-  lines_deleted: unknown
-  review: not_reviewed
+  files_changed: 2
+  lines_added: 22
+  lines_deleted: 0
+  review: acceptable
 human_intervention:
   count: 0
   details: []
 contaminated: false
-final_result: not_run
+evaluation_infrastructure:
+  - step: regression_test_defect_detection
+    issue: test_patch_output_option_was_after_path_separator
+    effect: empty patch was not applied and only the original 6 tests ran
+    recovery: regenerated the test-only patch with the correct option order
+    candidate_changed: false
+final_result: pass

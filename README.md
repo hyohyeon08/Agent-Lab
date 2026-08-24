@@ -109,3 +109,6 @@ Task 001의 상세 기준은 [에이전트 관찰 설계](docs/superpowers/specs
 oracle, `RUN-0001`~`RUN-0005` 기록, 독립 평가와 5회 비교 보고서가 있다. 다음
 마일스톤은 같은 모델 조건을 유지한 두 번째 작은 fixture를 추가해 작업 유형에
 따른 탐색·수정·검증 행동의 변화를 관찰하는 것이다.
+
+TASK-002의 fixture와 확장 지표 설계안은
+[TASK-002 관찰 설계](docs/designs/task-002-observation.md)에 기록한다.

@@ -1,0 +1,18 @@
+status: not_run
+public_tests: not_run
+typecheck: not_run
+external_evaluation: not_run
+regression_test:
+  added: unknown
+  quality: not_reviewed
+  defect_detection_check: not_run
+diff:
+  files_changed: unknown
+  lines_added: unknown
+  lines_deleted: unknown
+  review: not_reviewed
+human_intervention:
+  count: 0
+  details: []
+contaminated: false
+final_result: not_run

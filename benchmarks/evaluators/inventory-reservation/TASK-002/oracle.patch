@@ -1,0 +1,14 @@
+diff --git a/src/reservation-service.ts b/src/reservation-service.ts
+--- a/src/reservation-service.ts
++++ b/src/reservation-service.ts
+@@ -48,6 +48,10 @@ export class ReservationService {
+   cancel(id: string): Reservation {
+     const reservation = this.requireReservation(id);
+ 
++    if (reservation.status === "cancelled") {
++      return { ...reservation };
++    }
++
+     if (reservation.status === "fulfilled") {
+       throw new InvalidReservationTransitionError(
+         reservation.id,

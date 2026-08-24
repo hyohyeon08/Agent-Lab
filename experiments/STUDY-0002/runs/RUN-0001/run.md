@@ -1,20 +1,25 @@
 ---
-study_id: STUDY-ID
-run_id: RUN-ID
-date: run-date
+study_id: STUDY-0002
+run_id: RUN-0001
+date: required-at-run
 agent:
-  label: agent-label
-  model: unknown
-  reasoning_effort: unknown
-  harness: unknown
-  plugins: unknown
-  skills: unknown
+  label: codex-gpt-5.6-luna-high-no-plugins-v1
+  model: gpt-5.6-luna
+  reasoning_effort: high
+  harness: Codex Desktop originator / Codex CLI exec source
+  plugins:
+    feature: disabled
+    model_visible: []
+    superpowers: disabled
+  skills:
+    model_visible: required-at-run
+    invoked: required-after-run
 fixture:
-  name: fixture-name
+  name: inventory-reservation
   source_commit: required-before-run
   workspace_start_commit: required-before-run
 task:
-  id: TASK-ID
+  id: TASK-002
 source_task:
   id: required-after-task-creation
   url: required-after-task-creation
@@ -61,7 +66,7 @@ execution:
     failed: unknown
     status: not_run
     typecheck: not_run
-    external_cases: unknown
+    external_cases: 9
     external_passed: unknown
     external_status: not_run
   change:
@@ -75,8 +80,8 @@ execution:
   cost:
     actual_usd: unavailable
     estimated_api_list_price_usd: unknown
-    estimate_method: model_api_list_price
-    pricing_as_of: run-date
+    estimate_method: gpt-5.6-luna_api_list_price
+    pricing_as_of: required-at-run
   termination_reason: unknown
   token_usage:
     input_tokens: unknown
@@ -95,14 +100,30 @@ contaminated: false
 
 ## 연구 질문
 
+같은 모델·reasoning effort·플러그인 조건에서 재고 상태 전이 버그를 해결할 때
+Agent가 어떤 탐색·수정·검증 행동을 보이며, 결과와 과정은 반복 실행에서 얼마나
+일관적인가?
+
 ## 관찰 관점
 
-과제에서 관찰할 탐색 범위, 수정 선택, 검증 근거를 적는다. 특정 작업 순서는
-미리 가정하지 않는다.
+사용자 제보만 받은 Agent가 결함을 재현하고 관련 상태와 불변 조건을 파악해
+수정한 뒤, 그 판단을 어떤 테스트와 명령으로 확인하는지 관찰한다. 특정 파일,
+작업 순서나 구현 형태를 미리 올바른 경로로 가정하지 않는다.
 
 ## 특히 관찰할 행동
 
+- 최초 행동과 최초 편집 전에 무엇을 확인하는가?
+- 예약 상태와 재고 변화의 관계를 어떤 관찰 가능한 설명과 명령으로 확인하는가?
+- 제보를 재현하는 테스트의 범위와 입력을 어떻게 정하는가?
+- 어떤 파일을 어느 범위로 바꾸고, 변경 뒤 무엇을 검증하는가?
+- 실패한 Tool 또는 테스트가 있다면 어떤 후속 행동을 선택하는가?
+- Model과 Tool의 왕복, Context 크기와 cache 재사용이 실행 중 어떻게 변하는가?
+
 ## 이 실행으로 결론 내릴 수 없는 것
+
+한 번의 실행만으로 Agent의 일반적인 능력, 특정 행동과 성공의 인과관계,
+다른 모델·하네스·프로젝트에서의 성능을 결론 내릴 수 없다. Trace 프록시는
+제공자 내부의 모든 모델 요청이나 순수 추론 시간을 나타내지 않는다.
 
 # 사실 기반 행동 기록
 
@@ -144,7 +165,7 @@ contaminated: false
 
 ## Agent가 보고한 검증
 
-## 평가 Agent가 독립적으로 재실행한 검증
+## 평가자가 독립적으로 재실행한 검증
 
 # 해석
 

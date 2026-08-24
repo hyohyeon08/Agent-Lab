@@ -103,12 +103,13 @@ Task 001의 상세 기준은 [에이전트 관찰 설계](docs/superpowers/specs
 
 ## 현재 상태
 
-**단계: Agent Lab v0 — 첫 5회 반복 관찰 완료**
+**단계: Agent Lab v0 — TASK-002 첫 dry run 준비**
 
-현재 저장소에는 의도적인 결함이 있는 TypeScript 픽스처, 외부 evaluator와
-oracle, `RUN-0001`~`RUN-0005` 기록, 독립 평가와 5회 비교 보고서가 있다. 다음
-마일스톤은 같은 모델 조건을 유지한 두 번째 작은 fixture를 추가해 작업 유형에
-따른 탐색·수정·검증 행동의 변화를 관찰하는 것이다.
+STUDY-0001의 5회 반복 관찰과 비교 보고서가 완료됐다. 현재는 같은 모델 조건에서
+두 번째 작은 fixture인 `inventory-reservation`, 외부 evaluator, 지표 스키마 v2와
+RUN-0001 실행 기록 골격까지 준비했다. 다음 마일스톤은 TASK-002의 첫 dry run을
+실행하고 Trace 추출값을 원본과 대조하는 것이다.
 
-TASK-002의 fixture와 확장 지표 설계안은
-[TASK-002 관찰 설계](docs/designs/task-002-observation.md)에 기록한다.
+TASK-002의 fixture와 확장 지표 설계는
+[TASK-002 관찰 설계](docs/designs/task-002-observation.md)에, 실제 실행 방법은
+[TASK-002 실행 안내](docs/runbooks/task-002-run.md)에 기록한다.

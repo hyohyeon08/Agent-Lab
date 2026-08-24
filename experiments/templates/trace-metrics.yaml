@@ -1,0 +1,48 @@
+schema_version: 2
+run_id: RUN-ID
+source:
+  task_id: required-after-task-creation
+  event: token_count.last_token_usage
+  interpretation: observable_model_response_proxy
+model_requests:
+  - sequence: unknown
+    preceded_by:
+      - unknown
+    followed_by:
+      - unknown
+    token_usage:
+      input_tokens: unknown
+      cached_input_tokens: unknown
+      cache_write_input_tokens: unknown
+      uncached_input_tokens: unknown
+      output_tokens: unknown
+      reasoning_output_tokens: unknown
+      total_tokens: unknown
+    response_phase_duration_ms: unknown
+summary:
+  model_request_count: unknown
+  input_tokens: unknown
+  cached_input_tokens: unknown
+  cache_write_input_tokens: unknown
+  uncached_input_tokens: unknown
+  average_input_tokens_per_model_request: unknown
+  cached_input_ratio: unknown
+  peak_context_tokens: unknown
+  time_to_first_edit_ms: unknown
+  time_to_first_edit_source: file_change_started_at
+  model_inference_duration_ms_total: unavailable
+  model_inference_duration_reason: provider_inference_timing_not_exposed
+  model_response_phase_duration_ms_total: unknown
+  model_response_phase_duration_source: trace_phase_wall_clock_proxy
+  tool_call_duration_ms_total: unknown
+  tool_call_duration_source: custom_tool_call_envelope_wall_clock
+  first_pass_success: unknown
+  first_pass_success_source: first_post_edit_test
+validation:
+  request_count_matches: unknown
+  token_sums_match: unknown
+  uncached_nonnegative: unknown
+  cached_ratio_in_range: unknown
+  peak_context_matches: unknown
+  tool_outputs_matched: unknown
+  first_pass_evidence_recorded: unknown

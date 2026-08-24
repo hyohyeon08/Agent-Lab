@@ -3,11 +3,12 @@
 이 디렉터리에는 재현 가능한 Study와 그 안의 Run 기록을 저장한다.
 
 ```text
-experiments/STUDY-0001/
+experiments/STUDY-ID/
 ├── study.yaml
 └── runs/
-    └── RUN-0001/
+    └── RUN-ID/
         ├── run.md
+        ├── trace-metrics.yaml
         ├── prompt.md
         ├── final-response.md
         ├── evaluation.yaml
@@ -15,7 +16,8 @@ experiments/STUDY-0001/
 ```
 
 - `study.yaml`: 연구 질문, 조건, 과제, 실행 목록
-- `run.md`: 실행 전 예상, 사실 기반 행동 기록, 해석
+- `run.md`: 실행 전 관찰 관점, 사실 기반 행동 기록, 해석
+- `trace-metrics.yaml`: 호출별 모델 응답 프록시와 Trace 기반 계산 근거
 - `prompt.md`: 관찰 대상 Agent에게 전달한 정확한 요청
 - `final-response.md`: Agent의 최종 응답
 - `evaluation.yaml`: 자동 평가와 수동 검토 결과

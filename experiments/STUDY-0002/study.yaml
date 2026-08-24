@@ -1,0 +1,48 @@
+id: STUDY-0002
+title: 하나의 Codex 에이전트가 작은 재고 상태 전이 버그를 해결하는 과정 관찰
+research_questions:
+  primary: >-
+    하나의 고정된 Codex 에이전트는 다른 유형의 작은 TypeScript 버그에서도
+    결과의 일관성과 과정의 변동을 함께 보이는가?
+  exploratory: >-
+    여러 실행과 fixture에서 모델 요청 프록시 및 상위 Tool 봉투 수의 증가가
+    token 사용량 증가와 함께 나타나는가?
+task:
+  id: TASK-002
+fixture:
+  name: inventory-reservation
+  source_commit: required-before-run
+condition:
+  id: codex-gpt-5.6-luna-high-no-plugins-v1
+  agent:
+    label: codex-gpt-5.6-luna-high-no-plugins-v1
+    model: gpt-5.6-luna
+    reasoning_effort: high
+    harness: Codex Desktop originator / Codex CLI exec source
+    plugins:
+      feature: disabled
+      model_visible: []
+      superpowers: disabled
+    skills:
+      model_visible: required-at-run
+      invoked: required-after-run
+runs:
+  - RUN-0001
+target_runs: 5
+status: prepared
+metrics:
+  schema_version: 2
+  detail_file: trace-metrics.yaml
+  first_run_manual_trace_validation: required
+baseline:
+  public_tests:
+    cases: 6
+    expected_status: pass
+  typecheck:
+    expected_status: pass
+  external_evaluation:
+    cases: 9
+    expected_passed: 8
+    expected_failed: 1
+    expected_status: fail
+predecessor: STUDY-0001

@@ -16,8 +16,8 @@ agent:
     invoked: required-after-run
 fixture:
   name: inventory-reservation
-  source_commit: required-before-run
-  workspace_start_commit: required-before-run
+  source_commit: db148723b9899c89b29634786a827a127c2df340
+  workspace_start_commit: 981cc34d7129c8fa73094d2ca7e056e177615afc
 task:
   id: TASK-002
 source_task:

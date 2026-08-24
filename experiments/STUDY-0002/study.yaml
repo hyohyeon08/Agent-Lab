@@ -11,7 +11,7 @@ task:
   id: TASK-002
 fixture:
   name: inventory-reservation
-  source_commit: required-before-run
+  source_commit: db148723b9899c89b29634786a827a127c2df340
 condition:
   id: codex-gpt-5.6-luna-high-no-plugins-v1
   agent:

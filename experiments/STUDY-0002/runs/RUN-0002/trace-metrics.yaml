@@ -1,0 +1,205 @@
+schema_version: 2
+run_id: RUN-0002
+source:
+  task_id: "01a032e2-7566-7262-b0ee-32d672ac9dbc"
+  session_file: rollout-2026-08-24T17-28-17-01a032e2-7566-7262-b0ee-32d672ac9dbc.jsonl
+  event: token_count.last_token_usage
+  interpretation: observable_model_response_proxy
+boundaries:
+  task_started_at: "2026-08-24T08:28:17.249Z"
+  first_tool_call_at: "2026-08-24T08:28:27.392Z"
+  first_edit_started_at: "2026-08-24T08:28:49.013Z"
+  final_agent_message_completed_at: "2026-08-24T08:29:02.348Z"
+model_requests:
+  - sequence: 1
+    preceded_by:
+      - task_start
+    followed_by:
+      - search
+    token_usage:
+      input_tokens: 13389
+      cached_input_tokens: 0
+      cache_write_input_tokens: 0
+      uncached_input_tokens: 13389
+      output_tokens: 235
+      reasoning_output_tokens: 42
+      total_tokens: 13624
+    response_phase_duration_ms: 10143
+  - sequence: 2
+    preceded_by:
+      - search
+    followed_by:
+      - read
+    token_usage:
+      input_tokens: 13734
+      cached_input_tokens: 13056
+      cache_write_input_tokens: 0
+      uncached_input_tokens: 678
+      output_tokens: 236
+      reasoning_output_tokens: 9
+      total_tokens: 13970
+    response_phase_duration_ms: 6252
+  - sequence: 3
+    preceded_by:
+      - read
+    followed_by:
+      - edit
+    token_usage:
+      input_tokens: 16186
+      cached_input_tokens: 13056
+      cache_write_input_tokens: 0
+      uncached_input_tokens: 3130
+      output_tokens: 692
+      reasoning_output_tokens: 154
+      total_tokens: 16878
+    response_phase_duration_ms: 15069
+  - sequence: 4
+    preceded_by:
+      - edit
+    followed_by:
+      - test
+    token_usage:
+      input_tokens: 16902
+      cached_input_tokens: 15104
+      cache_write_input_tokens: 0
+      uncached_input_tokens: 1798
+      output_tokens: 100
+      reasoning_output_tokens: 9
+      total_tokens: 17002
+    response_phase_duration_ms: 3765
+  - sequence: 5
+    preceded_by:
+      - test
+    followed_by:
+      - shell
+    token_usage:
+      input_tokens: 17271
+      cached_input_tokens: 16128
+      cache_write_input_tokens: 0
+      uncached_input_tokens: 1143
+      output_tokens: 120
+      reasoning_output_tokens: 17
+      total_tokens: 17391
+    response_phase_duration_ms: 4044
+  - sequence: 6
+    preceded_by:
+      - shell
+    followed_by:
+      - final_answer
+    token_usage:
+      input_tokens: 17791
+      cached_input_tokens: 0
+      cache_write_input_tokens: 0
+      uncached_input_tokens: 17791
+      output_tokens: 208
+      reasoning_output_tokens: 109
+      total_tokens: 17999
+    response_phase_duration_ms: 4777
+tool_envelopes:
+  - sequence: 1
+    call_id: call_ht5zUTKoqRgs8B6Iw26vpGvz
+    category: search
+    logical_categories:
+      - search
+    started_at: "2026-08-24T08:28:27.392Z"
+    completed_at: "2026-08-24T08:28:27.516Z"
+    duration_ms: 124
+    logical_call_count: 1
+    result: success
+  - sequence: 2
+    call_id: call_z5xU7TR2p5Alfupn2S85mxjX
+    category: read
+    logical_categories:
+      - read
+    started_at: "2026-08-24T08:28:33.768Z"
+    completed_at: "2026-08-24T08:28:33.879Z"
+    duration_ms: 111
+    logical_call_count: 1
+    result: success
+  - sequence: 3
+    call_id: call_b9PsDzstjwnCQr7T4yGetTb8
+    category: edit
+    logical_categories:
+      - edit
+    started_at: "2026-08-24T08:28:48.948Z"
+    completed_at: "2026-08-24T08:28:49.114Z"
+    duration_ms: 166
+    logical_call_count: 1
+    result: success
+  - sequence: 4
+    call_id: call_ZiiWfBj5YP8klF11kQfCjjj5
+    category: test
+    logical_categories:
+      - test
+    started_at: "2026-08-24T08:28:52.879Z"
+    completed_at: "2026-08-24T08:28:53.451Z"
+    duration_ms: 572
+    logical_call_count: 1
+    result: success
+  - sequence: 5
+    call_id: call_mokConOcKACImUCxsFyNZScv
+    category: shell
+    logical_categories:
+      - shell
+    started_at: "2026-08-24T08:28:57.495Z"
+    completed_at: "2026-08-24T08:28:57.571Z"
+    duration_ms: 76
+    logical_call_count: 1
+    result: success
+first_pass_evidence:
+  first_edit_started_at: "2026-08-24T08:28:49.013Z"
+  first_post_edit_test: "npm test && npm run typecheck"
+  first_post_edit_test_exit_code: 0
+  first_pass_success: true
+summary:
+  duration_ms: 45131
+  time_to_first_token_ms: 6749
+  time_to_first_action_ms: 10143
+  model_request_count: 6
+  input_tokens: 95273
+  cached_input_tokens: 57344
+  cache_write_input_tokens: 0
+  uncached_input_tokens: 37929
+  output_tokens: 1591
+  reasoning_output_tokens: 340
+  total_tokens: 96864
+  average_input_tokens_per_model_request: 15878.83
+  cached_input_ratio: 0.6019
+  peak_context_tokens: 17791
+  time_to_first_edit_ms: 31764
+  time_to_first_edit_source: file_change_started_at
+  model_inference_duration_ms_total: unavailable
+  model_inference_duration_reason: provider_inference_timing_not_exposed
+  model_response_phase_duration_ms_total: 44050
+  model_response_phase_duration_source: trace_phase_wall_clock_proxy
+  tool_call_trace_envelope_count: 5
+  tool_call_count: 5
+  tool_call_breakdown:
+    plan: 0
+    search: 1
+    read: 1
+    edit: 1
+    test: 1
+    shell: 1
+    wait: 0
+    other: 0
+  tool_call_duration_ms_total: 1049
+  tool_call_duration_source: custom_tool_call_envelope_wall_clock
+  failed_tool_calls: 0
+  retries: 0
+  first_pass_success: true
+  first_pass_success_source: first_post_edit_test
+  tests:
+    cases: 7
+    passed: 7
+    failed: 0
+    typecheck: pass
+  termination_reason: normal_completion
+validation:
+  request_count_matches: true
+  token_sums_match: true
+  uncached_nonnegative: true
+  cached_ratio_in_range: true
+  peak_context_matches: true
+  tool_outputs_matched: true
+  first_pass_evidence_recorded: true

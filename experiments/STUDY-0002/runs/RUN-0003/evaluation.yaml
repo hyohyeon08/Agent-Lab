@@ -1,0 +1,32 @@
+status: completed
+public_tests:
+  cases: 7
+  passed: 7
+  failed: 0
+  status: pass
+typecheck: pass
+external_evaluation:
+  cases: 9
+  passed: 9
+  failed: 0
+  status: pass
+regression_test:
+  added: true
+  quality: acceptable
+  defect_detection_check: pass
+  baseline_with_test_only:
+    cases: 7
+    passed: 6
+    failed: 1
+    expected_failure: repeated_cancel_releases_inventory_twice
+diff:
+  files_changed: 2
+  lines_added: 20
+  lines_deleted: 0
+  review: acceptable
+human_intervention:
+  count: 0
+  details: []
+contaminated: false
+evaluation_infrastructure: []
+final_result: pass

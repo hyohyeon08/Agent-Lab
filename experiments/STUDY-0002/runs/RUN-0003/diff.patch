@@ -1,0 +1,42 @@
+diff --git a/src/reservation-service.ts b/src/reservation-service.ts
+index 080128b..6f585dd 100644
+--- a/src/reservation-service.ts
++++ b/src/reservation-service.ts
+@@ -53,6 +53,10 @@ export class ReservationService {
+   cancel(id: string): Reservation {
+     const reservation = this.requireReservation(id);
+ 
++    if (reservation.status === "cancelled") {
++      return { ...reservation };
++    }
++
+     if (reservation.status === "fulfilled") {
+       throw new InvalidReservationTransitionError(
+         reservation.id,
+diff --git a/test/reservation-service.test.ts b/test/reservation-service.test.ts
+index 691dc77..485e475 100644
+--- a/test/reservation-service.test.ts
++++ b/test/reservation-service.test.ts
+@@ -67,6 +67,22 @@ test("활성 예약을 취소하면 재고를 반환한다", () => {
+   assert.equal(inventory.available("sku-a"), 10);
+ });
+ 
++test("이미 취소된 예약을 다시 취소해도 재고를 중복 반환하지 않는다", () => {
++  const { inventory, service } = createFixture();
++  service.create({
++    id: "reservation-1",
++    sku: "sku-a",
++    quantity: 4,
++  });
++
++  const firstCancellation = service.cancel("reservation-1");
++  const secondCancellation = service.cancel("reservation-1");
++
++  assert.deepEqual(secondCancellation, firstCancellation);
++  assert.equal(secondCancellation.status, "cancelled");
++  assert.equal(inventory.available("sku-a"), 10);
++});
++
+ test("활성 예약을 완료하면 재고를 반환하지 않는다", () => {
+   const { inventory, service } = createFixture();
+   service.create({

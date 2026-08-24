@@ -103,13 +103,15 @@ Task 001의 상세 기준은 [에이전트 관찰 설계](docs/superpowers/specs
 
 ## 현재 상태
 
-**단계: Agent Lab v0 — TASK-002 첫 dry run 완료**
+**단계: Agent Lab v0 — TASK-002 5회 반복 관찰 완료**
 
 STUDY-0001의 5회 반복 관찰과 비교 보고서가 완료됐다. 같은 모델 조건에서 두 번째
-fixture인 `inventory-reservation`의 RUN-0001도 실행·독립 평가했고, 지표 스키마
-v2의 호출별 Trace 값을 원본 JSONL과 대조했다. 다음 마일스톤은 같은 source
-commit에서 RUN-0002~RUN-0005를 독립 실행하고 결과를 비교하는 것이다.
+fixture인 `inventory-reservation`도 같은 source commit에서 5회 독립 실행하고
+모든 결과를 평가했다. 5/5가 공개 테스트·타입 검사·외부 평가를 통과했고,
+호출별 Context와 Tool 시간까지 지표 스키마 v2로 기록했다.
 
 TASK-002의 fixture와 확장 지표 설계는
 [TASK-002 관찰 설계](docs/designs/task-002-observation.md)에, 실제 실행 방법은
-[TASK-002 실행 안내](docs/runbooks/task-002-run.md)에 기록한다.
+[TASK-002 실행 안내](docs/runbooks/task-002-run.md)에 기록한다. 실행별 결과와
+종합 해석은 [STUDY-0002 비교 보고서](experiments/STUDY-0002/comparison.md)에서
+확인할 수 있다.

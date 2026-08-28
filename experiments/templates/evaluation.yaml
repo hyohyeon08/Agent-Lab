@@ -1,11 +1,24 @@
 status: not_run
-public_tests: not_run
+public_tests:
+  cases: unknown
+  passed: unknown
+  failed: unknown
+  status: not_run
 typecheck: not_run
-external_evaluation: not_run
+external_evaluation:
+  cases: unknown
+  passed: unknown
+  failed: unknown
+  status: not_run
 regression_test:
   added: unknown
   quality: not_reviewed
   defect_detection_check: not_run
+  baseline_with_test_only:
+    cases: unknown
+    passed: unknown
+    failed: unknown
+    expected_failure: unknown
 diff:
   files_changed: unknown
   lines_added: unknown
@@ -15,4 +28,5 @@ human_intervention:
   count: 0
   details: []
 contaminated: false
+evaluation_infrastructure: []
 final_result: not_run

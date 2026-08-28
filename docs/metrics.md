@@ -243,6 +243,12 @@ npm run extract:trace-metrics -- \
   --output experiments/STUDY-ID/runs/RUN-XXXX/trace-metrics.yaml
 ```
 
+합집합 Tool 시간과 peak Context 계산의 경계 조건은 다음 명령으로 검증한다.
+
+```bash
+npm run test:trace-metrics
+```
+
 추출기는 RUN-0001의 수동 계산 15개 핵심 필드와 일치함을 확인했다. 모델 응답
 프록시 수가 Tool 봉투 수보다 정확히 1개 많지 않은 등 예상하지 않은 Trace 구조는
 임의로 맞추지 않고 오류로 중단한다. 이 경우 원본을 수동 검토해 가용한 값과

@@ -1,6 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import {
+  intervalUnionDurationMs,
+  peakInputTokens,
+} from "./trace-metric-calculations.js";
+
 type JsonObject = Record<string, unknown>;
 type ToolCategory =
   | "plan"
@@ -500,7 +505,13 @@ function extract(tracePath: string, runId: string): JsonObject {
     (total, request) => total + request.response_phase_duration_ms,
     0,
   );
-  const toolDuration = tools.reduce((total, tool) => total + tool.duration_ms, 0);
+  const toolDuration = intervalUnionDurationMs(
+    tools.map((tool) => ({
+      startMs: timestampMs(tool.started_at),
+      endMs: timestampMs(tool.completed_at),
+    })),
+  );
+  const peakContextTokens = peakInputTokens(usages);
   const failedToolCalls = tools.reduce(
     (total, tool) =>
       total + (tool.result === "failure" ? tool.logical_call_count : 0),
@@ -520,7 +531,7 @@ function extract(tracePath: string, runId: string): JsonObject {
     "last token_count.info.total_token_usage",
   );
 
-  return {
+  const metrics: JsonObject = {
     schema_version: 2,
     run_id: runId,
     source: {
@@ -585,7 +596,7 @@ function extract(tracePath: string, runId: string): JsonObject {
       ),
       cached_input_ratio:
         summaryInput === 0 ? "unavailable" : round(summaryCached / summaryInput, 4),
-      peak_context_tokens: Math.max(...usages.map((usage) => usage.input_tokens)),
+      peak_context_tokens: peakContextTokens,
       time_to_first_edit_ms:
         firstEditStartedAtMs === undefined
           ? "unavailable"
@@ -636,12 +647,14 @@ function extract(tracePath: string, runId: string): JsonObject {
         summaryInput === 0 ||
         (summaryCached / summaryInput >= 0 && summaryCached / summaryInput <= 1),
       peak_context_matches:
-        Math.max(...usages.map((usage) => usage.input_tokens)) ===
-        Math.max(...usages.map((usage) => usage.input_tokens)),
+        usages.every((usage) => usage.input_tokens <= peakContextTokens) &&
+        usages.some((usage) => usage.input_tokens === peakContextTokens),
       tool_outputs_matched: tools.length === outputEvents.length,
       first_pass_evidence_recorded: firstTestTool !== undefined,
     },
   };
+
+  return metrics;
 }
 
 const args = parseArgs(process.argv.slice(2));

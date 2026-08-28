@@ -1,6 +1,8 @@
 id: STUDY-ID
 title: 연구 제목
-research_question: 연구 질문
+research_questions:
+  primary: 주 연구 질문
+  exploratory: 탐색적 연구 질문
 task:
   id: TASK-ID
 fixture:
@@ -17,3 +19,24 @@ condition:
     skills: unknown
 runs:
   - RUN-ID
+target_runs: unknown
+status: planned
+metrics:
+  schema_version: 2
+  detail_file: trace-metrics.yaml
+  first_run_manual_trace_validation: not_started
+baseline:
+  public_tests:
+    cases: unknown
+    expected_status: unknown
+  typecheck:
+    expected_status: unknown
+  external_evaluation:
+    cases: unknown
+    expected_passed: unknown
+    expected_failed: unknown
+    expected_status: unknown
+predecessor: unknown
+completed_results: {}
+aggregate: {}
+comparison_report: not_created

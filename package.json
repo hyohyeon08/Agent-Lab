@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
+    "test:trace-metrics": "node --import tsx --test src/observers/trace-metric-calculations.test.ts",
     "extract:trace-metrics": "tsx src/observers/extract-codex-trace-metrics.ts",
     "evaluate:task-001": "tsx benchmarks/evaluators/booking-scheduler/TASK-001/evaluator.test.ts",
     "evaluate:task-002": "tsx benchmarks/evaluators/inventory-reservation/TASK-002/evaluator.test.ts"
